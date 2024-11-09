@@ -24,9 +24,9 @@ const Header = () => {
           </Nav>
           <Nav>
             <NavDropdown title="Common" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Log in</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Sign out</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Profile</NavDropdown.Item>
+              <NavDropdown.Item>Log in</NavDropdown.Item>
+              <NavDropdown.Item>Sign out</NavDropdown.Item>
+              <NavDropdown.Item>Profile</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

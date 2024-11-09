@@ -1,7 +1,9 @@
 const Home = (props) => {
   return (
     <>
-      <div>Đây là trang Home</div>
+      <div className="homepage-container">
+        <div>Đây là trang Home</div>
+      </div>
     </>
   );
 };
