@@ -10,11 +10,30 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #6c757d;
 }
 
 .app-container {
   .header-container {
-    .navbar-nav {
+    .btn {
+      border-radius: 5px;
+      padding: 4px 16px;
+      margin: 0 8px;
+      border: 1px solid #000;
+      cursor: pointer;
+      height: 40px;
+
+      &:active {
+        transform: scale(0.97);
+      }
+
+      &.btn-signup {
+        background-color: #000;
+        color: #fff;
+      }
+    }
+
+    .navbar {
       .nav-link {
         &.active {
           color: #432280;

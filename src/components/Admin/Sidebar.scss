@@ -1,0 +1,77 @@
+.ps-sidebar-root {
+  height: 100vh;
+
+  &.css-1wvake5 {
+    border: none;
+
+    &.ps-collapsed {
+      width: 0;
+      min-width: 0;
+    }
+  }
+
+  .ps-sidebar-container {
+    background-color: #fff;
+    overflow-y: hidden;
+    transition: all 0.3s ease;
+
+    &:hover {
+      overflow-y: auto; /* Hiển thị thanh cuộn khi hover */
+    }
+
+    /* Tùy chỉnh thanh cuộn */
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    /* Ẩn các nút mũi tên đầu và cuối thanh cuộn */
+    &::-webkit-scrollbar-button {
+      display: none;
+    }
+
+    /* Màu sắc và kiểu của thanh cuộn */
+    &::-webkit-scrollbar-thumb {
+      background-color: #c2c8e3;
+      border-radius: 4px;
+    }
+
+    /* Màu của thanh cuộn khi hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #a8b3e0;
+    }
+
+    /* Ẩn phần track bên dưới thanh cuộn */
+    &::-webkit-scrollbar-track-piece {
+      background: transparent;
+    }
+
+    .ps-menu-root {
+      ul {
+        .ps-menuitem-root {
+          &.header-sidebar {
+            padding: 9px;
+            font-size: 28px;
+            color: #223645;
+            font-weight: 600;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #e05170;
+            margin-bottom: 36px;
+
+            .ps-menu-icon {
+              color: #e20b3a;
+              margin-top: 2px;
+              margin-left: -6px;
+            }
+          }
+
+          .ps-menu-button {
+            &.ps-open {
+              color: #e20b3a;
+              border-radius: 4px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+.homepage-container {
+  .hero {
+    .row {
+      width: 100%;
+      .col {
+        margin: 18px;
+        video {
+          width: 100%;
+          object-fit: cover;
+        }
+
+        &.hero-content {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          row-gap: 32px;
+          .title-large {
+            font-size: 80px;
+            line-height: 1;
+          }
+          .title-small {
+            font-size: 18px;
+          }
+          .btn {
+            border-radius: 5px;
+            padding: 4px 16px;
+            margin: 0 8px;
+            border: 1px solid #000;
+            cursor: pointer;
+            height: 40px;
+            background-color: #000;
+            color: #fff;
+            align-self: flex-start;
+            &:active {
+              transform: scale(0.97);
+            }
+          }
+        }
+      }
+    }
+  }
+}
