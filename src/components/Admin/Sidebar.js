@@ -55,7 +55,9 @@ const SidebarAdmin = (props) => {
           <MenuItem>Ca làm việc</MenuItem>
         </SubMenu>
         <SubMenu label="Quản lí khách hàng" icon={<UserIcon />}>
-          <MenuItem>Danh sách</MenuItem>
+          <MenuItem component={<Link to="/admin/manage-users" />}>
+            Danh sách
+          </MenuItem>
           <MenuItem>Khách hàng thân thiết</MenuItem>
           <MenuItem>Yêu cầu đặc biệt</MenuItem>
           <MenuItem>Chương trình đặc biệt</MenuItem>

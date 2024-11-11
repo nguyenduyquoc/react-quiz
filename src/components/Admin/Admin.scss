@@ -1,4 +1,15 @@
 .admin-container {
   display: flex;
   background-color: #fff;
+
+  .admin-content {
+    .admin-header-root {
+      //
+    }
+    .admin-main {
+      .mx-4 {
+        background: #ef8d8d;
+      }
+    }
+  }
 }

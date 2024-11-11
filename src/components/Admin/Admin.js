@@ -2,6 +2,7 @@ import SidebarAdmin from "./Sidebar";
 import "./Admin.scss";
 import HeaderAdmin from "./HeaderAdmin.js";
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
 const Admin = (props) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -45,8 +46,10 @@ const Admin = (props) => {
         <div className="admin-header-root mx-4">
           <HeaderAdmin handleChangeCollapsed={handleChangeCollapsed} />
         </div>
-        <div className="content w-100">
-          <div className="mx-4">Content</div>
+        <div className="admin-main w-100">
+          <div className="mx-4">
+            <Outlet />
+          </div>
         </div>
       </div>
     </div>
