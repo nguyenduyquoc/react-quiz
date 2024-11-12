@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ModalCreateUser from "../fragment/ModalCreateUser";
 import "./ManageUser.scss";
+import TableUser from "../fragment/TableUser";
 
 const ManageUser = () => {
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
@@ -11,7 +12,8 @@ const ManageUser = () => {
         Trang chủ / Quản lí User / Danh sách
       </div>
       <div className="manage-user-main">
-        <div className="btn-add-new">
+        <div className="btn-add-new d-flex justify-content-between my-1">
+          <div className="fs-3 fw-bold">User List</div>
           <button
             className="btn btn-dark"
             onClick={() => setShowModalCreateUser(true)}
@@ -19,7 +21,9 @@ const ManageUser = () => {
             Thêm người dùng
           </button>
         </div>
-        <div className="list-user"></div>
+        <div className="list-user rounded mt-3 p-3">
+          <TableUser />
+        </div>
         <ModalCreateUser
           show={showModalCreateUser}
           setShow={setShowModalCreateUser}
