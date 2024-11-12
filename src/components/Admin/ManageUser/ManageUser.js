@@ -1,4 +1,5 @@
 import ModalCreateUser from "../fragment/ModalCreateUser";
+import "./ManageUser.scss";
 
 const ManageUser = () => {
   return (
