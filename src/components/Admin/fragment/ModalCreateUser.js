@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import axios from "axios";
 import { toast } from "react-toastify";
+import { postCreateNewUser } from "../../../services/UserService";
 
 const ModalCreateUser = (props) => {
   const { show, setShow } = props;
@@ -55,26 +55,23 @@ const ModalCreateUser = (props) => {
     }
 
     // call api
-    const data = new FormData();
-    data.append("email", email);
-    data.append("password", password);
-    data.append("username", username);
-    data.append("role", role);
-    data.append("userImage", image);
 
     try {
-      let response = await axios.post(
-        "http://localhost:8081/api/v1/participant",
-        data
+      let data = await postCreateNewUser(
+        email,
+        password,
+        username,
+        role,
+        image
       );
-      console.log(">>> check response : ", response.data);
-      if (response.data && response.data.EC === 0) {
-        toast.success(response.data.EM);
+      console.log(">>> check data response : ", data);
+      if (data && data.EC === 0) {
+        toast.success(data.EM);
         handleClose();
       }
 
-      if (response.data && response.data.EC !== 0) {
-        toast.error(response.data.EM);
+      if (data && data.EC !== 0) {
+        toast.error(data.EM);
       }
     } catch (error) {
       console.error("Error calling API:", error);
