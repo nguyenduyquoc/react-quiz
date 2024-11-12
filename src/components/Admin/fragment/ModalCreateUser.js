@@ -1,12 +1,19 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import axios from "axios";
 
-const ModalCreateUser = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+const ModalCreateUser = (props) => {
+  const { show, setShow } = props;
+  const handleClose = () => {
+    setShow(false);
+    setEmail("");
+    setUsername("");
+    setPassword("");
+    setImage("");
+    setRole("USER");
+    setPreviewImage("");
+  };
 
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -26,11 +33,26 @@ const ModalCreateUser = () => {
     }
   };
 
+  const handleSubmitCreateUser = () => {
+    // validate dữ liệu
+
+    // call api
+    const data = new FormData();
+    data.append("email", email);
+    data.append("password", password);
+    data.append("username", username);
+    data.append("role", role);
+    data.append("userImage", image);
+
+    let response = axios.post("http://localhost:8081/api/v1/participant", data);
+    console.log(">>> check response : ", response);
+  };
+
   return (
     <>
-      <Button variant="dark" onClick={handleShow}>
+      {/* <Button variant="dark" onClick={handleShow}>
         Thêm khách hàng
-      </Button>
+      </Button> */}
 
       <Modal
         show={show}
@@ -112,7 +134,7 @@ const ModalCreateUser = () => {
           <Button variant="danger" onClick={handleClose}>
             Đóng
           </Button>
-          <Button variant="success" onClick={handleClose}>
+          <Button variant="success" onClick={() => handleSubmitCreateUser()}>
             Thêm mới
           </Button>
         </Modal.Footer>

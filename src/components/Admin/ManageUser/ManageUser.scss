@@ -1,7 +1,17 @@
 .manage-user-root {
+  padding: 8px;
+  color: #6c757d;
+
   .manage-user-title {
+    font-weight: 500;
+    font-size: 18px;
   }
   .manage-user-main {
+    .btn-add-new {
+      margin: 16px 0;
+    }
+    .list-user {
+    }
   }
 }
 
