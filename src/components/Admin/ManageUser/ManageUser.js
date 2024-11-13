@@ -31,6 +31,10 @@ const ManageUser = () => {
     setUserUpdate(user);
   };
 
+  const resetUserUpdate = () => {
+    setUserUpdate({});
+  };
+
   const fetchListUser = async () => {
     let data = await getAllUser();
     if (data.EC === 0) {
@@ -74,6 +78,7 @@ const ManageUser = () => {
           setShow={setShowModalUpdateUser}
           userUpdate={userUpdate}
           fetchListUser={fetchListUser}
+          resetUserUpdate={resetUserUpdate}
         />
       </div>
     </div>

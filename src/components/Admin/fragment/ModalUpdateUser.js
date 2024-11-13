@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { toast } from "react-toastify";
-import { postCreateNewUser } from "../../../services/UserService";
+import { putUpdateUser } from "../../../services/UserService";
 import _ from "lodash";
 
 const ModalUpdateUser = (props) => {
-  const { show, setShow, userUpdate } = props;
+  const { show, setShow, userUpdate, resetUserUpdate } = props;
   const handleClose = () => {
     setShow(false);
     setEmail("");
@@ -15,6 +15,7 @@ const ModalUpdateUser = (props) => {
     setImage("");
     setRole("USER");
     setPreviewImage("");
+    resetUserUpdate();
   };
 
   const [email, setEmail] = useState("");
@@ -25,7 +26,7 @@ const ModalUpdateUser = (props) => {
   const [previewImage, setPreviewImage] = useState("");
 
   useEffect(() => {
-    console.log(">>> run useEffect in ModalCreateUser");
+    // console.log(">>> run useEffect in ModalCreateUser");
     if (!_.isEmpty(userUpdate)) {
       setEmail(userUpdate.email);
       setUsername(userUpdate.username);
@@ -46,36 +47,10 @@ const ModalUpdateUser = (props) => {
     }
   };
 
-  const validateEmail = (email) => {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-  };
-
   const handleSubmitUpdateUser = async () => {
-    // validate dữ liệu
-    const isValidEmail = validateEmail(email);
-    if (!isValidEmail) {
-      toast.error("invalid email");
-      return;
-    }
-    if (!password) {
-      toast.error("invalid password");
-      return;
-    }
-
     // call api
-
     try {
-      let data = await postCreateNewUser(
-        email,
-        password,
-        username,
-        role,
-        image
-      );
+      let data = await putUpdateUser(userUpdate.id, username, role, image);
       console.log(">>> check data response : ", data);
       if (data && data.EC === 0) {
         toast.success(data.EM);
@@ -92,7 +67,7 @@ const ModalUpdateUser = (props) => {
     }
   };
 
-  console.log(">>> check render in ModalCreateUser: ", userUpdate);
+  //   console.log(">>> check render in ModalCreateUser: ", userUpdate);
 
   return (
     <>
