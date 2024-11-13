@@ -1,33 +1,5 @@
-import { useEffect, useState } from "react";
-import { getAllUser } from "../../../services/UserService";
-
 const TableUser = (props) => {
-  const [listUsers, setListUser] = useState([
-    // {
-    //   id: 1,
-    //   username: "hoangquoc293",
-    //   email: "hoangquoc293@gmail.com",
-    //   role: "USER",
-    // },
-    // {
-    //   id: 1,
-    //   username: "npngan255",
-    //   email: "npngan255@gmail.com",
-    //   role: "USER",
-    // },
-  ]);
-
-  const fetchListUser = async () => {
-    let data = await getAllUser();
-    if (data.EC === 0) {
-      setListUser(data.DT);
-    }
-  };
-
-  // chạy sau khi component được render
-  useEffect(() => {
-    fetchListUser();
-  }, []);
+  const { listUsers } = props;
 
   return (
     <>
