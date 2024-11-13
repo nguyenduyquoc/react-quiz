@@ -29,7 +29,10 @@ const TableUser = (props) => {
                     <button className="btn">
                       <i className="bi bi-display"></i>
                     </button>
-                    <button className="btn text-warning">
+                    <button
+                      className="btn text-warning"
+                      onClick={() => props.openUpdateUserModal(user)}
+                    >
                       <i className="bi bi-pencil-square"></i>
                     </button>
                     <button className="btn text-danger">

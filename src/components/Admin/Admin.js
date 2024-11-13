@@ -25,7 +25,7 @@ const Admin = (props) => {
   };
 
   const handleChangeBroken = () => {
-    console.log(">>> handleChangeBroken");
+    // console.log(">>> handleChangeBroken");
     if (!isFirstLoad) {
       setBroken(!broken);
       if (toggled) setToggled(!toggled);
@@ -34,7 +34,7 @@ const Admin = (props) => {
   };
 
   useEffect(() => {
-    console.log(">>> run useEffect");
+    // console.log(">>> run useEffect");
 
     setIsFirstLoad(false);
     const screenWidth = window.innerWidth;
@@ -46,9 +46,9 @@ const Admin = (props) => {
     }
   }, []);
 
-  console.log(`"collapsed is ${collapsed}`);
-  console.log(`"toggled is ${toggled}`);
-  console.log(`"broken is ${broken}`);
+  // console.log(`"collapsed is ${collapsed}`);
+  // console.log(`"toggled is ${toggled}`);
+  // console.log(`"broken is ${broken}`);
 
   return (
     <div className="admin-container">
