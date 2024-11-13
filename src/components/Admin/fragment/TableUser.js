@@ -35,7 +35,10 @@ const TableUser = (props) => {
                     >
                       <i className="bi bi-pencil-square"></i>
                     </button>
-                    <button className="btn text-danger">
+                    <button
+                      className="btn text-danger"
+                      onClick={() => props.openDeleteUserModal(user)}
+                    >
                       <i className="bi bi-trash"></i>
                     </button>
                   </td>

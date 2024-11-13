@@ -4,10 +4,12 @@ import "./ManageUser.scss";
 import TableUser from "../fragment/TableUser";
 import { getAllUser } from "../../../services/UserService";
 import ModalUpdateUser from "../fragment/ModalUpdateUser";
+import ModalDeleteUser from "../fragment/ModalDeleteUser";
 
 const ManageUser = () => {
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
   const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
+  const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
   const [listUsers, setListUser] = useState([
     /*
     {
@@ -25,10 +27,16 @@ const ManageUser = () => {
     */
   ]);
   const [userUpdate, setUserUpdate] = useState({});
+  const [userDelete, setUserDelete] = useState({});
 
   const openUpdateUserModal = (user) => {
     setShowModalUpdateUser(true);
     setUserUpdate(user);
+  };
+
+  const openDeleteUserModal = (user) => {
+    setShowModalDeleteUser(true);
+    setUserDelete(user);
   };
 
   const resetUserUpdate = () => {
@@ -66,6 +74,7 @@ const ManageUser = () => {
           <TableUser
             listUsers={listUsers}
             openUpdateUserModal={openUpdateUserModal}
+            openDeleteUserModal={openDeleteUserModal}
           />
         </div>
         <ModalCreateUser
@@ -79,6 +88,11 @@ const ManageUser = () => {
           userUpdate={userUpdate}
           fetchListUser={fetchListUser}
           resetUserUpdate={resetUserUpdate}
+        />
+        <ModalDeleteUser
+          show={showModalDeleteUser}
+          setShow={setShowModalDeleteUser}
+          userDelete={userDelete}
         />
       </div>
     </div>
