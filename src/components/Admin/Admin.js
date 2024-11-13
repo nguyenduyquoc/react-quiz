@@ -1,7 +1,7 @@
 import SidebarAdmin from "./Sidebar";
 import "./Admin.scss";
 import HeaderAdmin from "./HeaderAdmin.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,6 +10,7 @@ const Admin = (props) => {
   const [collapsed, setCollapsed] = useState(false);
   const [toggled, setToggled] = useState(false);
   const [broken, setBroken] = useState(false);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   const handleChangeCollapsed = () => {
     if (broken) {
@@ -24,10 +25,26 @@ const Admin = (props) => {
   };
 
   const handleChangeBroken = () => {
-    setBroken(!broken);
-    if (toggled) setToggled(!toggled);
-    if (collapsed) setCollapsed(!collapsed);
+    console.log(">>> handleChangeBroken");
+    if (!isFirstLoad) {
+      setBroken(!broken);
+      if (toggled) setToggled(!toggled);
+      if (collapsed) setCollapsed(!collapsed);
+    }
   };
+
+  useEffect(() => {
+    console.log(">>> run useEffect");
+
+    setIsFirstLoad(false);
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 992) {
+      //lg
+      setBroken(false);
+    } else {
+      setBroken(true);
+    }
+  }, []);
 
   console.log(`"collapsed is ${collapsed}`);
   console.log(`"toggled is ${toggled}`);

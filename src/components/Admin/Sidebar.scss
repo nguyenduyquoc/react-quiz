@@ -11,8 +11,8 @@
   }
 
   .ps-sidebar-container {
-    // background: linear-gradient(to bottom, #f5f5f5, #d1d3cd);
-    background-color: inherit;
+    background: linear-gradient(to bottom, #f5f5f5, #d1d3cd);
+    // background-color: inherit;
     overflow-y: hidden;
     transition: all 0.3s ease;
 
@@ -84,5 +84,8 @@
         }
       }
     }
+  }
+  .ps-sidebar-backdrop {
+    background-color: rgb(0, 0, 0, 0.1);
   }
 }

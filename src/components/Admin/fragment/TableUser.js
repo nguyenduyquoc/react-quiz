@@ -55,13 +55,13 @@ const TableUser = (props) => {
                   <td>{user.role}</td>
                   <td className="d-flex justify-content-evenly">
                     <button className="btn">
-                      <i class="bi bi-display"></i>
+                      <i className="bi bi-display"></i>
                     </button>
                     <button className="btn text-warning">
-                      <i class="bi bi-pencil-square"></i>
+                      <i className="bi bi-pencil-square"></i>
                     </button>
                     <button className="btn text-danger">
-                      <i class="bi bi-trash"></i>
+                      <i className="bi bi-trash"></i>
                     </button>
                   </td>
                 </tr>
