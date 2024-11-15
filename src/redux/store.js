@@ -1,12 +1,25 @@
 import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./reducer/rootReducer";
 import { thunk } from "redux-thunk";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const persistConfig = {
+  key: "root",
+  storage,
+};
 
-export default store;
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+const store = createStore(persistedReducer, applyMiddleware(thunk));
+let persistor = persistStore(store);
+
+export { store, persistor };
 
 /**
+ *
+ * Thiết lập Redux store với khả năng lưu trữ và khôi phục state từ localStorage hoặc sessionStorage thông qua thư viện redux-persist.
+ * Ở đây là đang dùng localStorage
+ *
  * createStore: hàm để tạo store Redux.
  *
  * applyMiddleware: thêm middleware (như thunk) để xử lý các tác vụ bất đồng bộ.
