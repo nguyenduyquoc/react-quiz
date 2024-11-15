@@ -10,23 +10,27 @@ const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
+    setIsLoading(true);
     // validate
     // call api
-    let data = await postLogin(email, password);
+    let data = await postLogin(email, password, 1000);
     console.log(data);
 
     if (data && +data.EC === 0) {
       dispatch(doLogin(data));
       toast.success(data.EM);
+      setIsLoading(false);
       navigate("/");
     }
 
     if (data && +data.EC !== 0) {
       toast.error(data.EM);
+      setIsLoading(false);
     }
   };
 
@@ -86,6 +90,7 @@ const Login = (props) => {
                   type="button"
                   className="login-button"
                   onClick={() => handleLogin()}
+                  disabled={isLoading}
                 >
                   SIGN IN
                 </button>
