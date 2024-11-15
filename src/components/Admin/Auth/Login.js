@@ -1,8 +1,32 @@
+import { useState } from "react";
 import "./Login.scss";
+import { postLogin } from "../../../services/UserService";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    // validate
+    // call api
+    let data = await postLogin(email, password);
+    console.log(data);
+
+    if (data && +data.EC === 0) {
+      toast.success(data.EM);
+      navigate("/");
+    }
+
+    if (data && +data.EC !== 0) {
+      toast.error(data.EM);
+    }
+  };
+
   return (
-    <div className="login-page container-fluid">
+    <div className="login-root container-fluid">
       <div className="row">
         <div className="login-box col-10 col-md-7 col-lg-6 col-xl-4 mx-auto my-auto">
           <div className="login-header">
@@ -10,7 +34,7 @@ const Login = (props) => {
             <p className="login-title title-secondary">Hotel & Apartments</p>
           </div>
           <div className="login-content">
-            <form className="login-form" autocomplete="off">
+            <form className="login-form" autoComplete="off">
               <div className="form-group mb-3">
                 <label htmlFor="email">Email</label>
                 <input
@@ -20,6 +44,8 @@ const Login = (props) => {
                   className="input-field email-input"
                   placeholder="Nhập email hoặc số điện thoại ..."
                   autoComplete="off"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
                 />
               </div>
               <div className="form-group mb-3">
@@ -31,6 +57,8 @@ const Login = (props) => {
                   className="input-field password-input"
                   placeholder="Nhập password ..."
                   autoComplete="off"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
                 />
               </div>
               <div className="form-remember">
@@ -42,18 +70,22 @@ const Login = (props) => {
                 />
                 <label
                   htmlFor="remember"
-                  class="remember-checkbox-label"
+                  className="remember-checkbox-label"
                 ></label>
                 <label htmlFor="remember" className="ms-2">
                   Remember this device
                 </label>
               </div>
               <div className="form-button">
-                <button type="submit" className="login-button">
+                <button
+                  type="button"
+                  className="login-button"
+                  onClick={() => handleLogin()}
+                >
                   SIGN IN
                 </button>
                 <button
-                  type="submit"
+                  type="button"
                   className="login-button login-with-google"
                 >
                   <i className="bi bi-google"></i>
@@ -62,9 +94,15 @@ const Login = (props) => {
               </div>
             </form>
           </div>
-          <div className="login-footer">
-            © 2025 <strong className="hotel-name">YenVy</strong>, All Rights
-            Reserved
+          <div className="login-footer ">
+            <div className="my-2">
+              Forgot password?{" "}
+              <strong className="hotel-name">Click here</strong>
+            </div>
+            <div>
+              © 2025 <strong className="hotel-name">YenVy</strong>, All Rights
+              Reserved
+            </div>
           </div>
         </div>
       </div>

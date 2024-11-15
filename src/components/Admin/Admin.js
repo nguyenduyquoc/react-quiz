@@ -3,8 +3,6 @@ import "./Admin.scss";
 import HeaderAdmin from "./HeaderAdmin.js";
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Admin = (props) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -71,19 +69,6 @@ const Admin = (props) => {
           </div>
         </div>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={3600}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      <ToastContainer />
     </div>
   );
 };
