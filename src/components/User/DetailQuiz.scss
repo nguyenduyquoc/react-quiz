@@ -1,0 +1,27 @@
+.detail-quiz-container {
+  .left-content {
+    .title {
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    .question-content {
+      .q-description {
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .q-image {
+        img {
+          width: 500px;
+          max-width: 100%;
+          height: auto;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  .right-content {
+  }
+}
