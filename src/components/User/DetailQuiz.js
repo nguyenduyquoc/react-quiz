@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getQuestionsByQuizId } from "../../services/QuizService";
 import { useSelector } from "react-redux";
+import _ from "lodash";
 
 const DetailQuiz = () => {
   const isAuthenticated = useSelector((state) => state.account.isAuthenticated);
@@ -14,8 +15,27 @@ const DetailQuiz = () => {
       let res = await getQuestionsByQuizId(quizId);
 
       if (res && res.EC === 0) {
-        setQuestions(res.DT);
-        console.log(res.DT);
+        let raw = res.DT;
+        let data = _.chain(raw)
+          .groupBy("id")
+          .map((value, key) => {
+            let questionDescription,
+              image = null;
+            let answers = [];
+
+            value.forEach((item, index) => {
+              if (index === 0) {
+                questionDescription = item.description;
+                image = item.image;
+              }
+              answers.push(item.answers);
+            });
+
+            return { questionId: key, questionDescription, image, answers };
+          })
+          .value();
+
+        console.log(data);
       }
     }
   };
