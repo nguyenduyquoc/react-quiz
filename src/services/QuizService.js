@@ -7,4 +7,10 @@ const getQuizByUser = () => {
   });
 };
 
-export { getQuizByUser };
+const getQuestionsByQuizId = (quizId) => {
+  return axios.get(`api/v1/questions-by-quiz?quizId=${quizId}`, {
+    headers: addTokenToHeaders(),
+  });
+};
+
+export { getQuizByUser, getQuestionsByQuizId };

@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { getQuizByUser } from "../../services/QuizService";
 import "./ListQuiz.scss";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const ListQuiz = (props) => {
   const isAuthenticated = useSelector((state) => state.account.isAuthenticated);
   const [arrayQuiz, setArrayQuiz] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getQuizData();
@@ -43,7 +45,12 @@ const ListQuiz = (props) => {
                     <p className="card-text" style={{ aspectRatio: "9 / 2" }}>
                       {quiz.description}
                     </p>
-                    <button className="btn btn-primary">Start now</button>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => navigate(`/quiz/${quiz.id}`)}
+                    >
+                      Start now
+                    </button>
                   </div>
                 </div>
               </div>
