@@ -1,0 +1,10 @@
+{
+  "sdb_admin_room": {
+    "title": "Room management",
+    "list": "Room list",
+    "types": "Room types",
+    "assets": "Room assets",
+    "amenities": "Room amenities",
+    "services": "Room service"
+  }
+}

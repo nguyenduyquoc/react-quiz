@@ -13,6 +13,8 @@ import "nprogress/nprogress.css";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import "./index.css";
 
+import i18n from "./utils/i18n";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>

@@ -11,10 +11,11 @@ import ListQuiz from "./components/User/ListQuiz";
 import DetailQuiz from "./components/User/DetailQuiz";
 import NotFound from "./components/NotFound";
 import ManageQuiz from "./components/Admin/ManageQuiz/ManageQuiz";
+import { Suspense } from "react";
 
 const Layout = (props) => {
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
@@ -42,7 +43,7 @@ const Layout = (props) => {
         pauseOnHover
         theme="light"
       />
-    </>
+    </Suspense>
   );
 };
 

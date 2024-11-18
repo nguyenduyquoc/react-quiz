@@ -12,8 +12,12 @@ import { ReactComponent as ServiceAndEventIcon } from "../../assets/icons/sideba
 import { ReactComponent as PaymentIcon } from "../../assets/icons/sidebar/icon-sidebar-payment.svg";
 import { ReactComponent as Logo } from "../../assets/icons/icon-logo.svg";
 
+import { useTranslation, Trans } from "react-i18next";
+
 const SidebarAdmin = (props) => {
   const { collapsed, toggled } = props;
+
+  const { t } = useTranslation();
 
   return (
     <Sidebar
@@ -33,12 +37,12 @@ const SidebarAdmin = (props) => {
         >
           Dashboard
         </MenuItem>
-        <SubMenu label="Quản lí phòng" icon={<RoomIcon />}>
-          <MenuItem>Danh sách phòng</MenuItem>
-          <MenuItem>Loại phòng</MenuItem>
-          <MenuItem>Tài sản phòng</MenuItem>
-          <MenuItem>Tiện ích phòng</MenuItem>
-          <MenuItem>Dịch vụ phòng</MenuItem>
+        <SubMenu label={t("sdb_admin_room.title")} icon={<RoomIcon />}>
+          <MenuItem>{t("sdb_admin_room.list")}</MenuItem>
+          <MenuItem>{t("sdb_admin_room.types")}</MenuItem>
+          <MenuItem>{t("sdb_admin_room.assets")}</MenuItem>
+          <MenuItem>{t("sdb_admin_room.amenities")}</MenuItem>
+          <MenuItem>{t("sdb_admin_room.services")}</MenuItem>
         </SubMenu>
         <SubMenu label="Quản lí đặt phòng" icon={<BookingIcon />}>
           <MenuItem>Danh sách</MenuItem>

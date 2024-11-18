@@ -1,0 +1,10 @@
+{
+  "sdb_admin_room": {
+    "title": "Quản lí phòng",
+    "list": "Danh sách phòng",
+    "types": "Loại phòng",
+    "assets": "Tài sản phòng",
+    "amenities": "Tiện ích phòng",
+    "services": "Dịch vụ phòng"
+  }
+}

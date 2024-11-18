@@ -1,8 +1,18 @@
 import "./HeaderAdmin.scss";
 import avatar from "../../assets/imgs/avatar-real.png";
 import { NavDropdown } from "react-bootstrap";
+import { useTranslation, Trans } from "react-i18next";
+
+import language_vi from "../../assets/imgs/language-vi.png";
+import language_en from "../../assets/imgs/language-en.png";
 
 const HeaderAdmin = (props) => {
+  const { t, i18n } = useTranslation();
+
+  const handleChangeLanguage = (language) => {
+    i18n.changeLanguage(language);
+  };
+
   return (
     <div className="admin-header-container d-flex justify-content-between align-items-center py-2">
       <div className="admin-header-toggle">
@@ -115,11 +125,20 @@ const HeaderAdmin = (props) => {
                   <path d="M12.5 3a17 17 0 0 1 0 18"></path>
                 </svg>
               }
-              id="basic-nav-dropdown"
+              id="basic-nav-dropdown-language"
             >
-              <NavDropdown.Item>Việt Nam</NavDropdown.Item>
-              <NavDropdown.Item onClick={() => {}}>English</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => handleChangeLanguage("vi")}>
+                Việt Nam
+              </NavDropdown.Item>
+              <NavDropdown.Item onClick={() => handleChangeLanguage("en")}>
+                English
+              </NavDropdown.Item>
             </NavDropdown>
+            <img
+              className="language_selected"
+              src={i18n.language === "vi" ? language_vi : language_en}
+              alt="language"
+            />
           </div>
         </div>
         <div className="gap"></div>
