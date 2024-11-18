@@ -13,4 +13,14 @@ const getQuestionsByQuizId = (quizId) => {
   });
 };
 
-export { getQuizByUser, getQuestionsByQuizId };
+const postSubmitQuiz = (data) => {
+  return axios.post(
+    `api/v1/quiz-submit`,
+    { ...data },
+    {
+      headers: addTokenToHeaders(),
+    }
+  );
+};
+
+export { getQuizByUser, getQuestionsByQuizId, postSubmitQuiz };

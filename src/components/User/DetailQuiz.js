@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { getQuestionsByQuizId } from "../../services/QuizService";
+import {
+  getQuestionsByQuizId,
+  postSubmitQuiz,
+} from "../../services/QuizService";
 import { useSelector } from "react-redux";
 import _ from "lodash";
 import "./DetailQuiz.scss";
 import Question from "./Question";
+import ModalResult from "./ModalResult";
 
 const DetailQuiz = () => {
   const isAuthenticated = useSelector((state) => state.account.isAuthenticated);
@@ -13,6 +17,8 @@ const DetailQuiz = () => {
   const [dataQuiz, setDataQuiz] = useState([]);
   const location = useLocation();
   const [currentQues, setCurrentQues] = useState(0);
+  const [isShowModalResult, setIsShowModalResult] = useState(false);
+  const [dataModalResult, setDataModalResult] = useState({});
 
   const handleClickPrevQuestionBtn = () => {
     if (currentQues !== 0) {
@@ -23,6 +29,47 @@ const DetailQuiz = () => {
   const handleClickNextQuestionBtn = () => {
     if (dataQuiz && dataQuiz.length > currentQues + 1) {
       setCurrentQues(currentQues + 1);
+    }
+  };
+
+  const handleClickSubmit = async () => {
+    let payload = {
+      quizId: +quizId,
+      answers: [],
+    };
+
+    let answers = [];
+    if (dataQuiz && dataQuiz.length > 0) {
+      dataQuiz.forEach((ques) => {
+        let questionId = ques.questionId;
+        let userAnswerId = [];
+
+        ques.answers.forEach((answer) => {
+          if (answer.isSelected) {
+            userAnswerId.push(answer.id);
+          }
+        });
+
+        answers.push({
+          questionId: +questionId,
+          userAnswerId: userAnswerId,
+        });
+      });
+
+      payload.answers = answers;
+    }
+
+    console.log("payload : ", payload);
+
+    let res = await postSubmitQuiz(payload);
+    console.log("res : ", res);
+    if (res && res.EC === 0) {
+      setDataModalResult({
+        countCorrect: res.DT.countCorrect,
+        countTotal: res.DT.countTotal,
+        quizData: res.DT.quizData,
+      });
+      setIsShowModalResult(true);
     }
   };
 
@@ -119,12 +166,24 @@ const DetailQuiz = () => {
             >
               Next
             </button>
+            <button
+              className="btn btn-success mx-2"
+              onClick={() => handleClickSubmit()}
+              hidden={dataQuiz.length === currentQues + 1 ? false : true}
+            >
+              Submit
+            </button>
           </div>
         </div>
         <div className="right-content col-12 col-sm-3 col-md-3 col-lg-4">
           count down
         </div>
       </div>
+      <ModalResult
+        show={isShowModalResult}
+        setShow={setIsShowModalResult}
+        dataModalResult={dataModalResult}
+      />
     </div>
   );
 };
