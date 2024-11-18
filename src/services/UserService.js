@@ -41,6 +41,13 @@ const postLogin = (email, password, delay) => {
   });
 };
 
+const postLogout = (email, refresh_token) => {
+  return axios.post("api/v1/logout", {
+    email: email,
+    refresh_token: refresh_token,
+  });
+};
+
 export {
   getAllUser,
   getAllUserWithPaginate,
@@ -48,4 +55,5 @@ export {
   putUpdateUser,
   deleteUser,
   postLogin,
+  postLogout,
 };

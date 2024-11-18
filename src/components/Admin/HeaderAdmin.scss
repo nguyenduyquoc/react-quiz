@@ -54,6 +54,27 @@
           align-items: center;
         }
       }
+
+      .language {
+        &:active {
+          transform: scale(0.9);
+          color: #e20b3a;
+        }
+        .dropdown-toggle::after {
+          display: none;
+        }
+        .dropdown-menu {
+          &.show {
+            .dropdown-item {
+              color: #6c757d;
+              &:active {
+                background-color: #f0f0f0;
+                color: #e20b3a;
+              }
+            }
+          }
+        }
+      }
     }
     .gap {
       width: 1px;

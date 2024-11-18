@@ -14,12 +14,13 @@ const Login = (props) => {
 
   const dispatch = useDispatch();
 
-  const handleLogin = async () => {
+  const handleLogin = async (event) => {
+    event.preventDefault();
     setIsLoading(true);
     // validate
     // call api
     let data = await postLogin(email, password, 1000);
-    console.log(data);
+    // console.log(data);
 
     if (data && +data.EC === 0) {
       dispatch(doLogin(data));
@@ -43,7 +44,11 @@ const Login = (props) => {
             <p className="login-title title-secondary">Hotel & Apartments</p>
           </div>
           <div className="login-content">
-            <form className="login-form" autoComplete="off">
+            <form
+              className="login-form"
+              autoComplete="off"
+              onSubmit={handleLogin}
+            >
               <div className="form-group mb-3">
                 <label htmlFor="email">Email</label>
                 <input
@@ -87,9 +92,8 @@ const Login = (props) => {
               </div>
               <div className="form-button">
                 <button
-                  type="button"
+                  type="submit"
                   className="login-button"
-                  onClick={() => handleLogin()}
                   disabled={isLoading}
                 >
                   SIGN IN

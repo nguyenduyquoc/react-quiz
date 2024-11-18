@@ -1,5 +1,6 @@
 import "./HeaderAdmin.scss";
 import avatar from "../../assets/imgs/avatar-real.png";
+import { NavDropdown } from "react-bootstrap";
 
 const HeaderAdmin = (props) => {
   return (
@@ -93,24 +94,32 @@ const HeaderAdmin = (props) => {
             </svg>
           </div>
           <div className="admin-header-menu-item language">
-            <svg
-              className="svg-stroke"
-              xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="30"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+            <NavDropdown
+              title={
+                <svg
+                  className="svg-stroke"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+                  <path d="M3.6 9h16.8"></path>
+                  <path d="M3.6 15h16.8"></path>
+                  <path d="M11.5 3a17 17 0 0 0 0 18"></path>
+                  <path d="M12.5 3a17 17 0 0 1 0 18"></path>
+                </svg>
+              }
+              id="basic-nav-dropdown"
             >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
-              <path d="M3.6 9h16.8"></path>
-              <path d="M3.6 15h16.8"></path>
-              <path d="M11.5 3a17 17 0 0 0 0 18"></path>
-              <path d="M12.5 3a17 17 0 0 1 0 18"></path>
-            </svg>
+              <NavDropdown.Item>Việt Nam</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => {}}>English</NavDropdown.Item>
+            </NavDropdown>
           </div>
         </div>
         <div className="gap"></div>
