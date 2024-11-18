@@ -3,7 +3,9 @@ import _ from "lodash";
 const Question = (props) => {
   const { question, currentQues } = props;
 
-  console.log(question);
+  const handleClickCheckbox = (event, questionId, answerId) => {
+    props.handleClickCheckbox(questionId, answerId);
+  };
 
   if (_.isEmpty(question)) {
     return <></>;
@@ -26,9 +28,16 @@ const Question = (props) => {
         {question.answers &&
           question.answers.length > 0 &&
           question.answers.map((answer, index) => (
-            <div class="form-check" key={index}>
-              <input class="form-check-input" type="checkbox" value="" />
-              <label class="form-check-label">{answer.description}</label>
+            <div className="form-check" key={index}>
+              <input
+                className="form-check-input"
+                type="checkbox"
+                onChange={(event) =>
+                  handleClickCheckbox(event, question.questionId, answer.id)
+                }
+                checked={answer.isSelected}
+              />
+              <label className="form-check-label">{answer.description}</label>
             </div>
           ))}
       </div>

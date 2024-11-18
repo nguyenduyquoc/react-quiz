@@ -26,6 +26,31 @@ const DetailQuiz = () => {
     }
   };
 
+  const handleClickCheckbox = (questionId, answerId) => {
+    let dataQuizClone = _.cloneDeep(dataQuiz);
+    let questionUpdate = dataQuizClone.find(
+      (ques) => +ques.questionId === +questionId
+    );
+
+    if (questionUpdate && questionUpdate.answers) {
+      questionUpdate.answers = questionUpdate.answers.map((ans) => {
+        if (+ans.id === +answerId) {
+          ans.isSelected = !ans.isSelected;
+        }
+        return ans;
+      });
+    }
+
+    let index = dataQuizClone.findIndex(
+      (item) => +item.questionId === +questionId
+    );
+
+    if (index > -1) {
+      dataQuizClone[index] = questionUpdate;
+      setDataQuiz(dataQuizClone);
+    }
+  };
+
   const fetchQuestions = async () => {
     if (isAuthenticated) {
       let res = await getQuestionsByQuizId(quizId);
@@ -44,6 +69,7 @@ const DetailQuiz = () => {
                 questionDescription = item.description;
                 image = item.image;
               }
+              item.answers.isSelected = false;
               answers.push(item.answers);
             });
 
@@ -51,7 +77,6 @@ const DetailQuiz = () => {
           })
           .value();
 
-        console.log(data);
         setDataQuiz(data);
       }
     }
@@ -76,6 +101,7 @@ const DetailQuiz = () => {
               question={
                 dataQuiz && dataQuiz.length > 0 ? dataQuiz[currentQues] : {}
               }
+              handleClickCheckbox={handleClickCheckbox}
             />
           </div>
           <div className="footer text-center">
