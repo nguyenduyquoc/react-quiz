@@ -33,7 +33,7 @@ const ManageUser = () => {
   const [userUpdate, setUserUpdate] = useState({});
   const [userDelete, setUserDelete] = useState({});
 
-  const LIMIT = 4;
+  const LIMIT = 10;
   const [pageCount, setPageCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 

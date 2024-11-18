@@ -68,6 +68,12 @@ const SidebarAdmin = (props) => {
           <MenuItem>Danh sách</MenuItem>
           <MenuItem>Lịch sử</MenuItem>
         </SubMenu>
+        <SubMenu label="Quiz" icon={<ServiceAndEventIcon />}>
+          <MenuItem component={<Link to="/admin/manage-quizzes" />}>
+            Danh sách
+          </MenuItem>
+          <MenuItem>Thêm mới</MenuItem>
+        </SubMenu>
 
         <MenuItem icon={<PaymentIcon />} component={<Link to="/payment" />}>
           Hóa đơn và thanh toán
