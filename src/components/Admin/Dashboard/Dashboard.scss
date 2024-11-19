@@ -50,8 +50,10 @@
         }
       }
     }
-    .dashboard-main-right {
-      overflow: hidden;
+    .dashboard_charts {
+      padding: 24px;
+      height: 400px;
+      border-radius: 8px;
     }
   }
 }

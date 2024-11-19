@@ -1,50 +1,62 @@
 import "./Dashboard.scss";
 import {
-  BarChart,
-  CartesianGrid,
+  LineChart,
   XAxis,
   Tooltip,
-  Legend,
-  Bar,
+  Line,
   YAxis,
+  ResponsiveContainer,
 } from "recharts";
 
 const Dashboard = () => {
   const data = [
     {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
+      name: "Jan",
+      booking: 1000,
     },
     {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
+      name: "Feb",
+      booking: 2000,
     },
     {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
+      name: "Mar",
+      booking: 3000,
     },
     {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
+      name: "Apr",
+      booking: 4780,
     },
     {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
+      name: "May",
+      booking: 5890,
     },
     {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
+      name: "June",
+      booking: 6390,
     },
     {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
+      name: "July",
+      booking: 7490,
+    },
+    {
+      name: "Aug",
+      booking: 8890,
+    },
+    {
+      name: "Sep",
+      booking: 4390,
+    },
+    {
+      name: "Oct",
+      booking: 3490,
+    },
+    {
+      name: "Nov",
+      booking: 1890,
+    },
+    {
+      name: "Dec",
+      booking: 2390,
     },
   ];
 
@@ -109,15 +121,17 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="dashboard_charts border d-flex justify-content-center bg-light">
-          <BarChart width={830} height={500} data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="pv" fill="#e20b3a" />
-            <Bar dataKey="uv" fill="#82ca9d" />
-          </BarChart>
+          <ResponsiveContainer width="80%">
+            <LineChart
+              data={data}
+              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            >
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Line type="monotone" dataKey="booking" stroke="#f5606b" />
+            </LineChart>
+          </ResponsiveContainer>
         </div>
       </div>
     </div>
