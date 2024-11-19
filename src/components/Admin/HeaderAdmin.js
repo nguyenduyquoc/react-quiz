@@ -5,12 +5,31 @@ import { useTranslation, Trans } from "react-i18next";
 
 import language_vi from "../../assets/imgs/language-vi.png";
 import language_en from "../../assets/imgs/language-en.png";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { doLogout } from "../../redux/action/accountAction";
+import { postLogout } from "../../services/UserService";
 
 const HeaderAdmin = (props) => {
   const { t, i18n } = useTranslation();
 
+  const account = useSelector((state) => state.account.account_info);
+  const isAuthenticated = useSelector((state) => state.account.isAuthenticated);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleChangeLanguage = (language) => {
     i18n.changeLanguage(language);
+  };
+
+  const handleLogout = async () => {
+    let res = await postLogout(account.email, account.refresh_token);
+
+    if (res.EC === 0) {
+      dispatch(doLogout());
+      navigate("/");
+    }
   };
 
   return (
@@ -142,9 +161,21 @@ const HeaderAdmin = (props) => {
           </div>
         </div>
         <div className="gap"></div>
-        <div className="employee-info d-flex justify-content-center align-items-center gap-2">
-          <img className="employee-avatar" src={avatar} alt="avatar" />
-          <p className="mb-1">Supper Admin</p>
+        <div className="employee-info">
+          <NavDropdown
+            title={
+              <div className="d-flex justify-content-center align-items-center gap-2">
+                <img className="employee-avatar" src={avatar} alt="avatar" />
+                <p className="mb-1">{account.username}</p>
+              </div>
+            }
+            id="basic-nav-dropdown-language"
+          >
+            <NavDropdown.Item>Profile</NavDropdown.Item>
+            <NavDropdown.Item onClick={() => handleLogout()}>
+              Logout
+            </NavDropdown.Item>
+          </NavDropdown>
         </div>
       </div>
     </div>

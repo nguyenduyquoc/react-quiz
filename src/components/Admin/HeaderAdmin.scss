@@ -110,6 +110,34 @@
         border-radius: 50%;
         border: 2px solid #dee2e6;
       }
+
+      &:active {
+        color: #e20b3a;
+      }
+
+      .dropdown-toggle::after {
+        display: none;
+      }
+      .dropdown-toggle::after {
+        display: none;
+      }
+      .dropdown-menu {
+        &.show {
+          .dropdown-item {
+            text-align: center;
+            color: #4c3575;
+            &:hover {
+              background-color: #f0f0f0;
+            }
+            &:active {
+              background-color: #f0f0f0;
+              color: #6c757d;
+
+              border-radius: 8px;
+            }
+          }
+        }
+      }
     }
   }
 }

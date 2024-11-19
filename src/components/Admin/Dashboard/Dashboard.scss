@@ -1,0 +1,57 @@
+.dashboard-root {
+  padding: 8px;
+  color: #6c757d;
+
+  .dashboard-title {
+    font-weight: 500;
+    font-size: 18px;
+  }
+  .dashboard-main {
+    .dashboard-cards {
+      .list_cards {
+        .card_item {
+          background: #fff;
+          border-radius: 8px;
+          border: 1px solid #6c757d;
+          padding: 16px;
+
+          .card_title {
+            font-size: 18px;
+            font-weight: 600;
+          }
+
+          .card_quantity {
+            color: #212529;
+            font-size: 28px;
+            font-weight: 600;
+            margin-top: 24px;
+            .quantity {
+              position: relative;
+
+              .percent {
+                font-size: 14px;
+                position: absolute;
+                top: -12px;
+                right: -48px;
+                border-radius: 4px;
+                background-color: rgb(218, 65, 65);
+                color: #fff;
+                padding: 2px 8px;
+              }
+            }
+          }
+
+          .total {
+            color: #9399a1;
+            span {
+              color: #212529;
+            }
+          }
+        }
+      }
+    }
+    .dashboard-main-right {
+      overflow: hidden;
+    }
+  }
+}
